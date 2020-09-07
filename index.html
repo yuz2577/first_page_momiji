@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="fade.css">
+        <script src="./jquery-3.5.1.min.js"></script>
+        <script>
+            $( document ).ready( function() {
+              var navOffset = $( '.top_nav' ).offset();
+              $( window ).scroll( function() {
+                if ( $( document ).scrollTop() > navOffset.top ) {
+                  $( '.top_nav' ).addClass( 'navFixed' );
+                }
+                else {
+                  $( '.top_nav' ).removeClass( 'navFixed' );
+                }
+              });
+            } );
+          </script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+        <title>Document</title>
+        <style>
+            .loader_background {
+                width: 100%;
+                height: 120%;
+                margin-top: -20px;
+                background-color: rgb(255, 255, 255);
+                display: block;
+                position: fixed;
+                z-index: 100;
+                text-align: center;
+            }
+            .loader {
+                border: 18px solid hsl(41, 32%, 90%); /* Light grey */
+                border-top: 18px solid saddlebrown; /* Blue */
+                border-radius: 50%;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 180px;
+                height: 180px;
+                animation: spin 2s linear infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+            /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+            body {
+                margin: 20px;
+                font-family: 'Noto Serif JP', serif;
+            }
+            .momijiyu {
+                font-size: 25px;
+                margin-left: 10px;
+                padding-top: 0;
+                color: #deb3b3;
+                font-weight: bold;
+                padding-left: 20px;
+            }
+
+            .navFixed {
+               position: fixed;
+               top: 0px; left: 0px;
+               width: 100%;
+               z-index: 99;
+                }
+            .top_nav {
+                display: flex;
+                padding-top: 0;
+                background-color: #c97e7e;
+                justify-content: space-between;
+                z-index: 98;
+                
+            }
+            .top_nav a {
+                margin-right: 25px;
+                cursor: pointer;
+                color: #7a2c2c;
+                font-size: 17pt;
+                transition: 0.5s;
+                text-align: center;
+            }
+            .top_nav a:hover {
+                color: beige;
+                background-color: #b14949;
+                border-radius: 50%;
+            }
+            .title {
+                font-size: 60pt;
+                position: absolute;
+                text-align: center;
+                top:24%;
+                width: 100%;
+                height: 100%;
+                color: #7f1f1f;
+            }
+            .location {
+                font-size: 25pt;
+                position: absolute;
+                top: 39%;
+                left: 50%;
+                margin-left: -230px;
+                margin-top: -5px;
+                color: #9c6565;
+            }
+            .big_ment {
+                text-align: center;
+                font-size: 28pt;
+                color: #5d3b3c;
+            }
+            .small_ment {
+                text-align: center;
+                font-size: 18pt;
+                margin-top: -30px;
+                color: #965b5d;
+            }
+            .ment {
+                position: absolute;
+                text-align: center;
+                top: 70%; left: 50%;
+                transform: translate(-50%, -50%); width: 100%;
+                z-index: 90;
+            }
+            .scroll {
+                position: absolute;
+                top: 83%;
+                left: 50%;
+                margin-left: -20px;
+            }
+            .swing {
+                position: absolute;
+                top: 20%;
+                left: 66%;
+                opacity: 0.5
+            }
+            .swing1 {
+                position: absolute;
+                top: 28%;
+                left: 73%;
+                opacity: 0.5
+            }
+            .swing2 {
+                position: absolute;
+                top: 24%;
+                left: 26%;
+                opacity: 0.5;
+            }
+            .tool {
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                margin: 0;
+            }
+            .stamp {
+                position: absolute;
+                width: 80px; height: 80px;
+                left: 50%; top: 110%;
+                margin-top: 100px;
+                transform: translate(-50%, -50%)
+            }
+            .box1 {
+                width: 450px;
+                height: 250px;
+                overflow: hidden;
+                display: inline-flex;
+                position: relative;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+            }
+            .box1 img {
+                width: 100%;
+                position: absolute;
+                transition: 1s;
+                opacity: 0.8;
+            }
+            .box1 i {
+                position: absolute;
+                left: 50%;
+                top: 150%;
+                transform: translate(-50%, -50%);
+                font-size: 80pt;
+                color: white;
+                transition: 1s;
+                opacity: 0.3;
+            }
+            .box1:hover img {
+                width: 105%;
+                opacity: 1;
+            }
+            .osaka_city {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 60pt;
+                color: white;
+                transition: 2s;
+            }
+            .box1:hover .osaka_city {
+                position: absolute;
+                top: -100%;
+                opacity: 0.3;
+            }
+            .box1:hover i {
+                position: absolute;
+                top: 50%;
+                opacity: 1;
+            }
+            /**/
+            .box2 {
+                width: 450px;
+                height: 250px;
+                overflow: hidden;
+                display: inline-flex;
+                position: relative;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+            }
+            .box2 img {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                transition: 1s;
+                opacity: 0.8;
+            }
+            .box2 i {
+                position: absolute;
+                left: 50%;
+                top: 150%;
+                transform: translate(-50%, -50%);
+                font-size: 80pt;
+                color: white;
+                transition: 1.5s;
+                opacity: 0.3;
+            }
+            .box2:hover img {
+                height: 105%;
+                width: 105%;
+                opacity: 1;
+            }
+            .kyouto_city {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 60pt;
+                color: white;
+                transition: 2s;
+            }
+            .box2:hover .kyouto_city {
+                position: absolute;
+                top: -100%;
+                opacity: 0.3;
+            }
+            .box2:hover i {
+                position: absolute;
+                top: 50%;
+                opacity: 1;
+            }
+            /**/
+            .box3 {
+                width: 450px;
+                height: 250px;
+                overflow: hidden;
+                display: inline-flex;
+                position: relative;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+            }
+            .box3 img {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                transition: 1s;
+                opacity: 0.8;
+            }
+            .box3 i {
+                position: absolute;
+                left: 50%;
+                top: 150%;
+                transform: translate(-50%, -50%);
+                font-size: 80pt;
+                color: white;
+                transition: 1.5s;
+                opacity: 0.3;
+            }
+            .box3:hover img {
+                height: 105%;
+                width: 105%;
+                opacity: 1;
+            }
+            .nara_city {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 60pt;
+                color: white;
+                transition: 2s;
+            }
+            .box3:hover .nara_city {
+                position: absolute;
+                top: -100%;
+                opacity: 0.3;
+            }
+            .box3:hover i {
+                position: absolute;
+                top: 50%;
+                opacity: 1;
+            }
+            /**/
+            .box4 {
+                width: 450px;
+                height: 250px;
+                overflow: hidden;
+                display: inline-flex;
+                position: relative;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+            }
+            .box4 img {
+                width: 100%;
+                position: absolute;
+                transition: 1s;
+                opacity: 0.8;
+            }
+            .box4 i {
+                position: absolute;
+                left: 50%;
+                top: 150%;
+                transform: translate(-50%, -50%);
+                font-size: 80pt;
+                color: white;
+                transition: 1.5s;
+                opacity: 0.3;
+            }
+            .box4:hover img {
+                width: 105%;
+                opacity: 1;
+            }
+            .siga_city {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 60pt;
+                color: white;
+                transition: 3s;
+            }
+            .box4:hover .siga_city {
+                position: absolute;
+                top: -100%;
+                opacity: 0.3;
+            }
+            .box4:hover i {
+                position: absolute;
+                top: 50%;
+                opacity: 1;
+            }
+            .back1 {
+                background-image: url('back1.jpg');
+                width: 100%;
+                height: 650px;
+                text-align: center;
+                position: relative;
+                margin-top: 20px;
+            }
+            .back2 {
+                margin-top: 60px;
+                width: 100%;
+                height: auto;
+                position: relative;
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            .back3 {
+                background-color: #ebbfbf;
+                position: relative;
+                padding: 30px;
+                text-align: right;
+                height: 350px;
+            }
+            .kimono_frame {
+                display: inline-flex;
+                width: 530px;
+                height: 350px;
+                overflow: hidden;
+                float: right;
+                position: relative;
+                left: 0;
+                margin-right: 40px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .kimono_frame img {
+                width: 100%;
+                opacity: 0.8;
+                transition: 1s;
+                position: absolute;
+                bottom: 0;
+            }
+            .kimono_frame:hover img {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            .kimono_text {
+                background-color: #dc9f9f;
+                position: relative;
+                right: 0;
+                top: 30px;
+            }
+            .kimono_title {
+                font-size: 30px;
+                color: #a84141
+            }
+            .kimono_ment {
+                color: #974b4b;
+            }
+            .kimono_soudan {
+                position: relative;
+                left: -5px;
+                top: 70px;
+                line-height: 37px;
+                font-size: 30pt;
+                color: white;
+                font-weight: 700;
+            }
+            .kimono_soudan i {
+                margin-left: 5px;
+            }
+            .stamp2 {
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                left: 50%; top: 0%;
+                transform: translate(-50%, -50%);
+                z-index: 98;
+            }
+            /**/
+            .back4 {
+                background-color: #e8c7c7;
+                position: relative;
+                padding: 30px;
+                text-align: left;
+                height: 350px;
+                margin-top:10px;
+               
+            }
+            .bento_frame {
+                display: inline-flex;
+                width: 530px;
+                height: 350px;
+                overflow: hidden;
+                float: left;
+                position: relative;
+                left: 0;
+                margin-right: 14px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .bento_frame img {
+                width: 100%;
+                opacity: 0.7;
+                transition: 1s;
+                position: absolute;
+                bottom: 0;
+            }
+            .bento_frame:hover img {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            .bento_text {
+                background-color: #d4a9a9;
+                position: relative;
+                right: 0;
+                top: 30px;
+            }
+            .bento_title {
+                font-size: 30px;
+                color: #a84141;
+                line-height: 25px;
+            }
+            .bento_ment {
+                color: #974b4b;
+            }
+            .bento_soudan {
+                position: relative;
+                left: -5px;
+                top: 70px;
+                line-height: 37px;
+                font-size: 30pt;
+                color: white;
+                font-weight: 700;
+            }
+
+            .bento_soudan i {
+                margin-right: 5px;
+            }
+            /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+            .copyright {
+                text-align: center;
+                line-height: 25px;
+                color: gray;
+                padding-top: 50px;
+                padding-bottom: 20px;
+                font-weight: 200;
+            }
+
+            .copyright a {
+                text-decoration: none;
+                COLOR: GRAY;
+            }
+            .copyright a:visited {
+                color: gray;
+            }
+            /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+            @media screen and (max-width: 1050px) {
+    .big_ment {
+        font-size:24pt;
+        
+    }
+
+    .kimono_frame, .bento_frame {
+        width: 450px; height: 250px;
+    }
+
+    .kimono_title, .bento_title {
+        font-size: 15pt;
+        
+    }
+
+    .kimono_ment, .bento_ment{
+        font-size: 9pt;
+    }
+
+    .kimono_soudan, .bento_soudan {
+        font-size: 18pt;
+        top: 40px;
+        line-height: 20pt;;
+    }
+
+    .back3, .back4 {
+        height: 250px;
+    }
+
+    .swing2 {left: 19%;}
+    .swing1 {left: 77%;}
+    
+}
+        </style>
+    </head>
+    <div class="loader_background">
+        <div class="loader"></text>
+    </div>
+</html></div><script>
+$(window).on('load', function () {
+    $('.loader').delay('1000').fadeOut();
+    $('.loader_background').delay('1000').fadeOut();
+});</script><body id="fade">
+<div class="back1">
+    <nav class="top_nav">
+        <text class="momijiyu">
+            <i class="fab fa-slack"></i>
+            モミジユ
+        </text>
+        <text class="menu">
+            <a>About</a>
+            <a>Album</a>
+            <a>Chat</a>
+        </text>
+    </nav>
+    <div class="title">
+        関西の紅葉</div>
+    <div class="location">{　大阪／京都／奈良／滋賀　｝</div>
+    <div class="ment">
+        <nav class="big_ment">関西での素敵な紅葉狩りを楽しみたい方でしたら…</nav>
+        <nav class="small_ment"><br>関西で会える秋、あなたの思い出がさらに素敵になるように
+            <br>ここでは様々な情報をあなたに提供します。
+            <br>あなたにとって良い参考になることを願います。</br>
+        <img class="stamp" src="stamp.png"></div>
+        <br>
+        
+    
+    <img src="scroll.png" class="scroll">
+    <div class="swing"><img src="momiji.png"></div>
+    <div class="swing1"><img src="momiji2.png"></div>
+    <div class="swing2"><img src="momiji3.png"></div>
+</div>
+<div class="back2">
+    <div class="box1"><img src="oosaka.jpg"><text class="osaka_city">大阪</text>
+        <i class="far fa-hand-pointer"></i>
+    </div>
+    <div class="box2"><img src="kyouto.jpg"><text class="kyouto_city">京都</text>
+        <i class="far fa-hand-pointer"></i>
+    </div>
+    <br><div class="box3"><img src="nara.jpg"><text class="nara_city">奈良</text>
+        <i class="far fa-hand-pointer"></i>
+    </div>
+    <div class="box4"><img src="siga.jpg"><text class="siga_city">滋賀</text>
+        <i class="far fa-hand-pointer"></i>
+    </div>
+</div><div class="back3"><span class="kimono_frame"><img src="kimono.jpg"></span>
+ <text class="kimono_text">
+    <text class="kimono_title">秋にお似合う着物を探していますか?</text>
+<br>
+    <text class="kimono_ment">紅葉狩りにぴったりの着物レンタルショップをご紹介します。
+        <br>どんな着物を着たらいいか迷われるようでしたら、
+        <br>心配しないでください。
+        <br>コーディネーターとの1:1無料相談サービスがあります。</text>
+        </br></text><div><img class="stamp2" src="stamp.png"></div>
+<div class="kimono_soudan">着物レンタルショップ、<br>コーディネーターに関して<i class="fas fa-hand-point-right"></i></div></div>
+<div class="back4"><span class="bento_frame"><img src="food.jpg"></span>
+  <text class="bento_text">
+        <text class="bento_title">紅葉狩りに持っていく<br>お弁当のことがお悩みですか? </text>
+        <br><text class="bento_ment">紅葉の下で食べると最高！<br>  
+            世の中にはいろんなお弁当の<br>
+            レシピがあります。 こちらは特に、それぞれの<br>
+            好みやレベルに合わせてレシピが用意されています。</text>
+        </br></text>
+    <div class="bento_soudan"><i class="fas fa-hand-point-left"></i>料理レシピの情報はこちらへ</div>
+   </div> <div class="copyright">
+   This is a web development practice page created by Jiyu K.
+   <br>Jiyu K © 2020
+   <br><a href="https://www.instagram.com/zyuzyuzyu_/?hl=ko"><i class="fab fa-instagram-square"></i>  Instagram</a> 
+   |  <a href="https://www.facebook.com/people/%EA%B9%80%EC%A7%80%EC%9C%A0/100003686183487"><i class="fab fa-facebook-square"></i>  facebook</a> 
+   |  <a href="#"></a><i class="fab fa-twitter-square"></i>  Twitter</a></div>
+</body></html>
